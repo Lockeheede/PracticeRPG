@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using PracticeRPG.Combat;
 //Hold Ctrl+Shift+Spacebar when trying to find info on methods
 
 namespace PracticeRPG.Movement
@@ -11,15 +12,35 @@ namespace PracticeRPG.Movement
     {
         [SerializeField] Transform target;
 
+        NavMeshAgent navMeshAgent;
+
+        private void Start()
+        {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+
         void Update()
         {
         UpdateAnimator();
+        }
+
+        public void StartMoveAction(Vector3 destination)
+        {
+            GetComponent<Fighter>().Cancel();
+            MoveTo(destination);
         }
             
 
         public void MoveTo(Vector3 destination)
         {
             GetComponent<NavMeshAgent>().destination = destination;
+            navMeshAgent.isStopped = false;
+        }
+
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
         }
 
         private void UpdateAnimator()
