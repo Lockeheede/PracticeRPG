@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System;
 using PracticeRPG.Combat;
 using PracticeRPG.Movement;
@@ -9,7 +11,7 @@ namespace PracticeRPG.Control
 
     public class PlayerController : MonoBehaviour   
     {
-    private void Update()
+        void Update()
         {
             //Highlight a block of code, hold ctrl and press '/' to comment out the block
             //And to mass rename, select a piece of code and press F2 to rename
@@ -24,7 +26,10 @@ namespace PracticeRPG.Control
             foreach(RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if(target == null) continue;
+                if (!GetComponent<Fighter>().CanAttack(target))
+                {
+                    continue;
+                }
 
                 if(Input.GetMouseButtonDown(0))
                 {

@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace PracticeRPG.Core
+{   
+    public class ActionScheduler : MonoBehaviour 
+    {
+        MonoBehaviour currentAction;
+
+        public void StartAction(MonoBehaviour action)
+        {
+            print("Canceling" + currentAction);
+            currentAction = action;
+
+        }
+    }
+}

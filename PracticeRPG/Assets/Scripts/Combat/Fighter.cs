@@ -1,5 +1,6 @@
 using UnityEngine;
 using PracticeRPG.Movement;
+using PracticeRPG.Core;
 
 namespace PracticeRPG.Combat
 {
@@ -10,19 +11,35 @@ namespace PracticeRPG.Combat
 
         private void Update() 
         {
-            print(Vector3.Distance(transform.position, target.position) < weaponRange);
-            /*if(target != null)
-            {
-                GetComponent<Mover>().MoveTo(target.position);
-            }
-            else
-            {
-                GetComponent<Mover>().Stop();
-            }*/
+            if(target == null) return;
+
+           if(!GetInRange())
+           {
+               GetComponent<Mover>().MoveTo(target.position);
+           } 
+           else
+           {
+               GetComponent<Mover>().Stop();
+           }
             
         }
+    
+
+        private bool GetInRange()
+        {
+            return Vector3.Distance(transform.position, target.position) < weaponRange;
+        }
+
+        public bool CanAttack(CombatTarget combatTarget)
+        {
+            if(combatTarget == null) { return false; }
+
+            else {return true;}
+        }
+
         public void Attack(CombatTarget combatTarget)
         {
+            GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.transform;
             print("HiYAHHHH!!!");
         }
