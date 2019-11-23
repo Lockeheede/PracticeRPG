@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using PracticeRPG.Combat;
+using PracticeRPG.Core;
+
 //Hold Ctrl+Shift+Spacebar when trying to find info on methods
 
 namespace PracticeRPG.Movement
@@ -27,6 +29,7 @@ namespace PracticeRPG.Movement
 
         public void StartMoveAction(Vector3 destination)
         {
+            GetComponent<ActionScheduler>().StartAction(this);
             GetComponent<Fighter>().Cancel();
             MoveTo(destination);
         }
@@ -34,7 +37,7 @@ namespace PracticeRPG.Movement
 
         public void MoveTo(Vector3 destination)
         {
-            GetComponent<NavMeshAgent>().destination = destination;
+            navMeshAgent.destination = destination;
             navMeshAgent.isStopped = false;
         }
 
@@ -44,12 +47,12 @@ namespace PracticeRPG.Movement
         }
 
         private void UpdateAnimator()
-            {
-                Vector3 velocity = GetComponent<NavMeshAgent>().velocity;//Get velocity from navmesh
-                Vector3 localVelocity = transform.InverseTransformDirection(velocity);//Makes the velocity meaningful for the character
-                float speed = localVelocity.z;//Passing it to speed
-                GetComponent<Animator>().SetFloat("forwardSpeed", speed);//Put into the animator
-            }
+        {
+            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;//Get velocity from navmesh
+            Vector3 localVelocity = transform.InverseTransformDirection(velocity);//Makes the velocity meaningful for the character
+            float speed = localVelocity.z;//Passing it to speed
+            GetComponent<Animator>().SetFloat("forwardSpeed", speed);//Put into the animator
+        }
         
     }
 }

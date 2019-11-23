@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using PracticeRPG.Combat;
 using PracticeRPG.Movement;
 using UnityEngine;
@@ -17,7 +14,6 @@ namespace PracticeRPG.Control
             //And to mass rename, select a piece of code and press F2 to rename
             if(InteractWithMovement()) return;
             if(InteractWithCombat()) return;
-            print("Nothing to do");
         }
 
         private bool InteractWithCombat()

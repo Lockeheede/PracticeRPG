@@ -6,28 +6,27 @@ namespace PracticeRPG.Combat
 {
     public class Fighter : MonoBehaviour 
     {
-        [SerializeField] float weaponRange = 2f;
+        [SerializeField] float weaponRange = 2.0f;
         Transform target;
 
-        private void Update() 
+        private void Update()
         {
             if(target == null) return;
 
-           if(!GetInRange())
-           {
-               GetComponent<Mover>().MoveTo(target.position);
-           } 
-           else
-           {
-               GetComponent<Mover>().Stop();
-           }
-            
-        }
-    
+            if (target != null && !IsInRange())
+            {
+                GetComponent<Mover>().MoveTo(target.transform.position);
+            }
+            else
+            {
+                GetComponent<Mover>().Stop();
+            }
 
-        private bool GetInRange()
+        }
+
+        private bool IsInRange()
         {
-            return Vector3.Distance(transform.position, target.position) < weaponRange;
+            return Vector3.Distance(target.transform.position, transform.position) < weaponRange;
         }
 
         public bool CanAttack(CombatTarget combatTarget)
