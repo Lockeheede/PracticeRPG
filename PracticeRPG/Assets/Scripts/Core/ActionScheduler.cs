@@ -13,7 +13,7 @@ namespace PracticeRPG.Core
             if(currentAction == action) return;
             if(currentAction != null)
             {
-            print("Canceling" + currentAction);
+            print("Cancelling" + currentAction);
             }
             currentAction = action;
 
