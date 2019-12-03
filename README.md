@@ -1,5 +1,5 @@
 # PracticeRPG
-A Unity RPG Project
+Unity RPG Project
 
 This is a project from the gamedev people. They made an intermediate C# coded tutorial to make a point and click RPG game. 
 I am making a version of my own to practice my skills as well as being a part of a team (Ft Worth's Games By Moonlight) and working
