@@ -4,26 +4,26 @@ using PracticeRPG.Core;
 
 namespace PracticeRPG.Combat
 {
-    public class Fighter : MonoBehaviour 
+    public class Fighter : MonoBehaviour
     {
         [SerializeField] float weaponRange = 2f;
         Transform target;
 
-        private void Update() 
+        private void Update()
         {
-            if(target == null) return;
+            if (target == null) return;
 
-           if(!GetInRange())
-           {
-               GetComponent<Mover>().MoveTo(target.position);
-           } 
-           else
-           {
-               GetComponent<Mover>().Stop();
-           }
-            
+            if (!GetInRange())
+            {
+                GetComponent<Mover>().MoveTo(target.position);
+            }
+            else
+            {
+                GetComponent<Mover>().Stop();
+            }
+
         }
-    
+
 
         private bool GetInRange()
         {
@@ -32,9 +32,9 @@ namespace PracticeRPG.Combat
 
         public bool CanAttack(CombatTarget combatTarget)
         {
-            if(combatTarget == null) { return false; }
+            if (combatTarget == null) { return false; }
 
-            else {return true;}
+            else { return true; }
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -46,6 +46,11 @@ namespace PracticeRPG.Combat
         public void Cancel()
         {
             target = null;
+        }
+
+        void Hit()
+        {
+
         }
     }
 }
