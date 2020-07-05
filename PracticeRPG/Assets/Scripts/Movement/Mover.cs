@@ -10,7 +10,6 @@ using PracticeRPG.Core;
 
 namespace PracticeRPG.Movement
 {
-
     public class Mover : MonoBehaviour
     {
         [SerializeField] Transform target;
@@ -35,7 +34,6 @@ namespace PracticeRPG.Movement
             MoveTo(destination);
         }
             
-
         public void MoveTo(Vector3 destination)
         {
             navMeshAgent.destination = destination;
